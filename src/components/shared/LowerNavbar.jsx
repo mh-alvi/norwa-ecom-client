@@ -1,21 +1,21 @@
 import { Link, NavLink } from "react-router-dom";
 import SearchBar from "../SearchBox/SearchBar";
-import { DrawerPlacement } from "../Slide_cart";
+import { DrawerPlacement } from "../SlideCart/SlideCart";
 
 const LowerNavbar = () => {
   return (
     <div className="sticky top-0 z-50 shadow-xl">
       <header className="bg-white">
         <div className="container mx-auto px-4 flex items-center">
-          <div className="mr-auto md:w-48 flex-shrink-0">
+          <div className="mr-auto ml-6 md:w-48 flex-shrink-0 select-none">
             <Link to={"/"}>
-              <img className="w-[60%]" src="/MainLogo.jpg" alt="" />
+              <img className="w-[20%] md:w-[55%]" src="/MainLogo2.ico" alt="" />
             </Link>
           </div>
 
           <nav>
             <div className="w-full max-w-xs xl:max-w-lg 2xl:max-w-2xl rounded-md hidden xl:flex items-center">
-              <ul className="flex justify-center gap-9 font-bold text-xl">
+              <ul className="flex justify-center gap-9 font-bold text-xl select-none">
                 <li className="hover:text-[#58A745]">
                   <NavLink to={"/"}>Home</NavLink>
                 </li>
@@ -26,14 +26,14 @@ const LowerNavbar = () => {
                   <NavLink to={"/services"}>Services</NavLink>
                 </li>
                 <li className="hover:text-[#58A745]">
-                  <NavLink to={"/news"}>News</NavLink>
+                  <NavLink to={"/blog"}>Blog</NavLink>
                 </li>
               </ul>
             </div>
           </nav>
 
           <div className="ml-auto md:w-48 hidden sm:flex flex-col place-items-end">
-            <span className="font-bold md:text-sm">8 800 332 65-66</span>
+            <a href="tel:PHONE"><span className="font-bold md:text-sm hover:text-[#58A745]">8801715589432</span></a>
             <span className="font-semibold text-sm text-gray-400">
               Support 24/7
             </span>
@@ -88,29 +88,31 @@ const LowerNavbar = () => {
               </li>
 
               <li className="ml-2 lg:ml-2 relative inline-block">
-                  <DrawerPlacement />
+                <DrawerPlacement />
               </li>
             </ul>
           </nav>
 
           <div className="bg-white p-4">
-            <button className="inline-flex items-center px-4 py-2 hover:bg-[#58A745] bg-[#006F45] transition-all text-white text-sm font-medium rounded-md">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 mr-2"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"
-                />
-              </svg>
-              Shop
-            </button>
+            <Link to={"/shop"}>
+              <button className="inline-flex items-center px-4 py-2 hover:bg-[#58A745] bg-[#006F45] transition-all text-white text-sm font-medium rounded-md">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 mr-2"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"
+                  />
+                </svg>
+                Shop
+              </button>
+            </Link>
           </div>
         </div>
       </header>

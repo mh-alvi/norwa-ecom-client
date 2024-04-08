@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { Link } from "react-router-dom";
 import { Drawer, Typography, IconButton } from "@material-tailwind/react";
 
 export function DrawerPlacement() {
@@ -8,10 +7,15 @@ export function DrawerPlacement() {
 
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
+  // const dispatch = useDispatch();
+
+  // const handleAddToCart = () => {
+  //   dispatch(addToCart(product));
+  // };
 
   return (
     <React.Fragment>
-      <Link className="" onClick={openDrawer}>
+      <button className="flex items-center" onClick={openDrawer}>
         <div className="absolute -top-1 right-0 z-10 bg-yellow-400 text-xs font-bold px-1 py-0.5 rounded-sm">
           3
         </div>
@@ -30,17 +34,11 @@ export function DrawerPlacement() {
             d="M551.991 64H144.28l-8.726-44.608C133.35 8.128 123.478 0 112 0H12C5.373 0 0 5.373 0 12v24c0 6.627 5.373 12 12 12h80.24l69.594 355.701C150.796 415.201 144 430.802 144 448c0 35.346 28.654 64 64 64s64-28.654 64-64a63.681 63.681 0 0 0-8.583-32h145.167a63.681 63.681 0 0 0-8.583 32c0 35.346 28.654 64 64 64 35.346 0 64-28.654 64-64 0-18.136-7.556-34.496-19.676-46.142l1.035-4.757c3.254-14.96-8.142-29.101-23.452-29.101H203.76l-9.39-48h312.405c11.29 0 21.054-7.869 23.452-18.902l45.216-208C578.695 78.139 567.299 64 551.991 64zM208 472c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm256 0c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm23.438-200H184.98l-31.31-160h368.548l-34.78 160z"
           ></path>
         </svg>
-      </Link>
-      <Drawer
-        placement="right"
-        open={open}
-        onClose={closeDrawer}
-        className="p-4"
-        overlay={true}
-        size={400}
-      >
-        <div className="">
-          <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+      </button>
+      <Drawer placement="right" open={open} onClose={closeDrawer} size={400}>
+        <div className="p-4 h-full">
+          {/* Top part */}
+          <div className="w-full">
             <div className="flex items-center justify-between">
               <Typography variant="h5" color="blue-gray">
                 Shopping cart
@@ -66,11 +64,15 @@ export function DrawerPlacement() {
                 </svg>
               </IconButton>
             </div>
-            <div className="mt-8 overflow-y-scroll">
-              <div className="flow-root">
+          </div>
+
+          {/* Products */}
+          <div className="overflow-y-auto h-full pb-[275px] custom-scrollbar mt-5">
+            <div>
+              <div className="">
                 <ul role="list" className="-my-6 divide-y divide-gray-200">
                   {products.map((product) => (
-                    <li key={product.id} className="flex py-6">
+                    <li key={product.id} className="flex py-6 mr-4">
                       <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                         <img
                           src={product.imageSrc}
@@ -82,7 +84,7 @@ export function DrawerPlacement() {
                       <div className="ml-4 flex flex-1 flex-col">
                         <div>
                           <div className="flex justify-between text-base font-medium text-gray-900">
-                            <h3>
+                            <h3 className="hover:text-[#80B500]">
                               <a href={product.href}>{product.name}</a>
                             </h3>
                             <p className="ml-4">{product.price}</p>
@@ -99,7 +101,7 @@ export function DrawerPlacement() {
                           <div className="flex">
                             <button
                               type="button"
-                              className="font-medium text-indigo-600 hover:text-indigo-500"
+                              className="font-medium text-[#80B500] hover:text-[#ff3838]"
                             >
                               Remove
                             </button>
@@ -111,12 +113,14 @@ export function DrawerPlacement() {
                 </ul>
               </div>
             </div>
-        </div>
+          </div>
 
-            <div className="absolute border-t -bottom-4 bg-white border-gray-200 px-4 py-6 sm:px-6">
-              <div className="flex justify-between text-base font-medium text-gray-900">
-                <p>Subtotal</p>
-                <p>$262.00</p>
+          {/* Bottom part */}
+          <div className="fixed  bottom-0 w-[380px]">
+            <div className="border-t bg-white border-gray-200 px-4 py-6 sm:px-6">
+              <div className="flex justify-between text-base font-medium text-[#58A745]">
+                <Typography variant="h6" color="black">Subtotal:</Typography>
+                <Typography variant="h6">$262.00</Typography>
               </div>
               <p className="mt-0.5 text-sm text-gray-500">
                 Shipping and taxes calculated at checkout.
@@ -124,7 +128,7 @@ export function DrawerPlacement() {
               <div className="mt-6">
                 <a
                   href="#"
-                  className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                  className="flex items-center justify-center rounded-none border border-transparent bg-[#80B500] px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-white hover:border-black hover:text-black"
                 >
                   Checkout
                 </a>
@@ -134,7 +138,7 @@ export function DrawerPlacement() {
                   or{" "}
                   <button
                     type="button"
-                    className="font-medium text-indigo-600 hover:text-indigo-500"
+                    className="font-medium text-indigo-600 hover:text-indigo-400"
                     onClick={() => setOpen(false)}
                   >
                     Continue Shopping
@@ -144,6 +148,7 @@ export function DrawerPlacement() {
               </div>
             </div>
           </div>
+        </div>
       </Drawer>
     </React.Fragment>
   );
@@ -164,6 +169,18 @@ const products = [
   },
   {
     id: 2,
+    name: "Medium Stuff Satchel",
+    href: "#",
+    color: "Blue",
+    price: "$32.00",
+    quantity: 1,
+    imageSrc:
+      "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg",
+    imageAlt:
+      "Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.",
+  },
+  {
+    id: 3,
     name: "Medium Stuff Satchel",
     href: "#",
     color: "Blue",

@@ -115,7 +115,7 @@ function SearchBar({ opps }) {
                 <li>
                   <a
                     href="/"
-                    className="text-gray-500 transition hover:opacity-75"
+                    className="text-gray-500 transition hover:opacity-75 hover:text-[#80B500]"
                   >
                     {" "}
                     Nowra{" "}
